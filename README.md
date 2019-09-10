@@ -51,6 +51,9 @@ Con la información obtenida se hace uso de [Nudity image detection HTTP API](ht
 
 Tras esperar a que todo el contenido de interés se haya otenido mediante scrapping, obtendremos otra vista con el nivel de exposición de la cuenta privada, así como un resumen de las scores NSFW de las imágenes obtenidas.
 
+### Levantando la página web en Heroku
+
+TBD
 
 Licencia
 -------
