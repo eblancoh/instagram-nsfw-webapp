@@ -7,6 +7,7 @@ from app_suggested import PrivateIGScrapper, nsfw_api_batch_post
 
 # create the application object
 app = Flask(__name__)
+app.secret_key = urandom(24)
 
 # use decorators to link the function to a url
 @app.route('/', methods=['GET', 'POST'])
@@ -55,6 +56,6 @@ def sign_out():
 
 # start the server with the 'run()' method
 if __name__ == '__main__':
-    app.secret_key = urandom(24)
+    # app.secret_key = urandom(24)
     # app.run(host='localhost', debug=True)
     app.run()
