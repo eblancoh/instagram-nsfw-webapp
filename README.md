@@ -31,20 +31,51 @@ http://localhost:5000/
 ```
 Esto nos dirige a la página que nos permitirá lanzar el proceso de scraping del perfil privado.
 
-### Lazando una consulta sobre perfil privado
+### Lanzando una consulta sobre perfil privado
 
-IMAGEN
+<div style="text-align:center">
+<img src="img/login.PNG" width="400" />
+<p>Página de login y comienzo de búsqueda</p>
+</div>
 
 **Requisitos**: 
 - Tener un perfil de Instagram. Las credenciales a usar se introducen en la página de login.
 - El perfil a scrapear debe ser privado (perfil objetivo).
 
-Se lanza la búsqueda y se dan los siguientes pasos:
+**Se lanza la búsqueda y se dan los siguientes pasos**:
 1. Se comprueba que se produce satisfactoriamente el login en Instagram.
 2. Se comprueba que el usuario objetivo existe.
 3. Se accede al perfil y se comienza a obtener a información en la que estamos interesados a través de Selenium y BeautifulSoup.
 
 Con la información obtenida se hace uso de [Nudity image detection HTTP API](https://github.com/EugenCepoi/nsfw_api). Este proyecto proporciona una API REST lista para implementar que permite predecir si una imagen es ofensiva o tiene contenido para adultos.
 
+Tras esperar a que todo el contenido de interés se haya otenido mediante scrapping, obtendremos otra vista con el nivel de exposición de la cuenta privada, así como un resumen de las scores NSFW de las imágenes obtenidas.
+
+
+Licencia
+-------
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+________________________________________
 
 
