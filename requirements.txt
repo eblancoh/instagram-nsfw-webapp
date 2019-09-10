@@ -119,7 +119,6 @@ nbformat==4.4.0
 networkx==2.3
 nltk==3.4.4
 notebook==5.7.8
-NudeNet==1.0.4
 numpy==1.16.4
 oauth2client==4.1.3
 olefile==0.46
