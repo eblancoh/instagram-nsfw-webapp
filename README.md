@@ -104,6 +104,9 @@ Tras desplegar, deberemos esperar un poco para poder hacer uso del servicio.
 Una vez dezplegada, simplemente debemos ir a la siguiente ruta para comenzar a usarla.
 https://instagram-nsfw-webapp.herokuapp.com/
 
+
+heroku buildpacks:set heroku/chromedriver --app instagram-nsfw-webapp
+
 Licencia
 -------
 This is free and unencumbered software released into the public domain.
