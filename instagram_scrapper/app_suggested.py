@@ -45,7 +45,7 @@ class PrivateIGScrapper(object):
             # para que no nos detecten.
             # Ver https://duo.com/decipher/driving-headless-chrome-with-python
             chrome_options = ChromeOptions()
-            chrome_options.add_argument("--headless")
+            #chrome_options.add_argument("--headless")
             self.browser = webdriver.Chrome(chrome_options=chrome_options)
         elif self.driver == 'geckodriver':
             # https://www.edureka.co/community/10026/headless-gecko-driver-using-selenium
