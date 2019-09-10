@@ -84,8 +84,6 @@ idna==2.8
 image==1.5.27
 imbalanced-learn==0.4.3
 imblearn==0.0
-# Editable install with no version control (instagram-scraper==1.6.1)
--e c:\users\cx02092\appdata\local\continuum\anaconda3\lib\site-packages
 instapy==0.6.2
 ip2geotools==0.1.5
 IP2Location==8.0.3
