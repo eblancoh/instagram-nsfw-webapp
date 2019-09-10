@@ -4,6 +4,11 @@ Este proyecto toma como bases las rutinas generadas bajo el proyecto [Instagram 
 
 Haciendo uso del motor dessrrollado en la Prueba de Concepto anteriormente desarrollada, se ha creado una **Aplicación Web** sencilla usando [**Python Flask**](https://palletsprojects.com/p/flask/) y [**Bootstrap 3**](https://getbootstrap.com/docs/3.3/).
 
+Para descragar este repositorio, simplemente ejecutar en consola:
+```bash
+$ git clone https://github.com/eblancoh/instagram-nsfw-webapp.git
+```
+
 Resumen de uso
 ------------
 En esta PoC se hace uso tanto de los siguientes WebDrivers para poder hacer el scrapping del contenido HTML:
@@ -18,6 +23,7 @@ $ export PATH=$PATH:/path/to/driver/chrome-driver
 $ export PATH=$PATH:/path/to/driver/gecko-driver
 ```
 Para añadir al PATH en **Windows**, se pueden seguir los [siguientes pasos](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/).
+
 
 ### Levantando la página web en local 
 
@@ -53,9 +59,50 @@ Tras esperar a que todo el contenido de interés se haya otenido mediante scrapp
 
 ### Levantando la página web en Heroku
 
+[**Heroku**](https://dashboard.heroku.com/apps) es una Plataforma como servicio (PaaS) que nos abstrae de tratar con servidores, todo lo que tenemos que hacer es registrarnos, descargar algunas herramientas y luego cargar nuestro código en la plataforma sin esfuerzo.
+#### Instalando un servicio web llamado **gunicorn**
+
+```bash 
+$ pip install gunicorn
+```
+#### Creamos un fichero `requirements.txt`
+
+```bash 
+$ pip freeze > requirements.txt
+```
+El cual ya está incluido en el actual repositorio.
+
 #### Creando un fichero `Procfile`
 
-TBD
+Debemos crear el fichero `Procfile` sin extensión y con la P mayúscula e incluir lo siguiente:
+
+```bash 
+web: gunicorn app:app
+```
+Aquí Heroku usa la web para iniciar un servidor web para la aplicación; `app:app` indica que el módulo y el nombre de la aplicación en nuestro caso.
+Recomendamos hacer un fork del presente repo para posteriormente crear una app en Heroku.
+
+#### Creando y desplegando una app en Heroku desde GitHub
+
+Antes de crear una aplicación, hay que asegurarse de que su cuenta de GitHub esté conectada con la cuenta de Heroku
+
+<div style="text-align:center">
+<img src="img/heroku-app.PNG" width="400" />
+<p>Creando una app en Heroku</p>
+</div>
+Posteriomente seleccionamos el repositorio de GitHub y elegimos la rama a desplegar.
+
+<div style="text-align:center">
+<img src="img/heroku-deploy.PNG" width="400" />
+<p>Creando una app en Heroku</p>
+</div>
+
+Tras desplegar, deberemos esperar un poco para poder hacer uso del servicio.
+
+#### Haciendo uso de la app
+
+Una vez dezplegada, simplemente debemos ir a la siguiente ruta para comenzar a usarla.
+https://instagram-nsfw-webapp.herokuapp.com/
 
 Licencia
 -------

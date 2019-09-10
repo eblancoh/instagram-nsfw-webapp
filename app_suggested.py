@@ -46,12 +46,12 @@ class PrivateIGScrapper(object):
             # Ver https://duo.com/decipher/driving-headless-chrome-with-python
             chrome_options = ChromeOptions()
             chrome_options.add_argument("--headless")
-            self.browser = webdriver.Chrome(chrome_options=chrome_options)
+            self.browser = webdriver.Chrome(executable_path='chromedriver/', chrome_options=chrome_options)
         elif self.driver == 'geckodriver':
             # https://www.edureka.co/community/10026/headless-gecko-driver-using-selenium
             firefox_options = FirefoxOptions()
             firefox_options.add_argument("--headless")
-            self.browser = webdriver.Firefox(firefox_options=firefox_options)
+            self.browser = webdriver.Firefox(executable_path='geckodriver/',firefox_options=firefox_options)
         
         self.url = "https://www.instagram.com/" + str(self.username)
     
