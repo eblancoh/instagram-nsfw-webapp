@@ -83,16 +83,6 @@ jedi==0.14.0
 Jinja2==2.10.1
 joblib==0.13.2
 jsonschema==3.0.1
-jupyter==1.0.0
-jupyter-client==5.3.1
-jupyter-console==6.0.0
-jupyter-contrib-core==0.3.3
-jupyter-contrib-nbextensions==0.5.1
-jupyter-core==4.5.0
-jupyter-docx-bundler==0.2.1
-jupyter-highlight-selected-word==0.2.0
-jupyter-latex-envs==1.4.6
-jupyter-nbextensions-configurator==0.4.1
 Keras==2.2.4
 Keras-Applications==1.0.8
 Keras-Preprocessing==1.1.0
@@ -167,7 +157,6 @@ pyssim==0.4
 python-dateutil==2.8.0
 python-editor==1.0.3
 python-Levenshtein==0.12.0
-python-telegram-bot==11.1.0
 python-utils==2.3.0
 pytz==2019.1
 pyvo==0.9.2
