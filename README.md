@@ -19,7 +19,7 @@ $ export PATH=$PATH:/path/to/driver/gecko-driver
 ```
 Para añadir al PATH en **Windows**, se pueden seguir los [siguientes pasos](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/).
 
-### Levantar la página web en local
+### Levantando la página web en local 
 
 ```python
 python instagram_scrapper/app.py
@@ -31,14 +31,20 @@ http://localhost:5000/
 ```
 Esto nos dirige a la página que nos permitirá lanzar el proceso de scraping del perfil privado.
 
+### Lazando una consulta sobre perfil privado
+
 IMAGEN
 
 **Requisitos**: 
 - Tener un perfil de Instagram. Las credenciales a usar se introducen en la página de login.
-- El perfil a scrapear debe ser privado (objetivo).
+- El perfil a scrapear debe ser privado (perfil objetivo).
 
 Se lanza la búsqueda y se dan los siguientes pasos:
 1. Se comprueba que se produce satisfactoriamente el login en Instagram.
 2. Se comprueba que el usuario objetivo existe.
 3. Se accede al perfil y se comienza a obtener a información en la que estamos interesados a través de Selenium y BeautifulSoup.
+
+Con la información obtenida se hace uso de [Nudity image detection HTTP API](https://github.com/EugenCepoi/nsfw_api). Este proyecto proporciona una API REST lista para implementar que permite predecir si una imagen es ofensiva o tiene contenido para adultos.
+
+
 
