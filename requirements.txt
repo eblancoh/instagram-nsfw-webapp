@@ -27,7 +27,6 @@ cloudpickle==1.2.1
 clyent==1.2.2
 cntk==2.6
 colorama==0.4.1
-conda==4.7.11
 configparser==3.7.4
 coverage==4.2
 crayons==0.2.0
