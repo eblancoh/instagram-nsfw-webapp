@@ -56,4 +56,5 @@ def sign_out():
 # start the server with the 'run()' method
 if __name__ == '__main__':
     app.secret_key = urandom(24)
-    app.run(host='localhost', debug=True)
+    # app.run(host='localhost', debug=True)
+    app.run()
