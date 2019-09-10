@@ -1,2 +1,0 @@
-certifi==2019.6.16
-wincertstore==0.2

@@ -15,3 +15,4 @@ Flask-SQLAlchemy==2.1
 Flask-Testing==0.6.1
 future==0.17.1
 Werkzeug==0.15.4
+gunicorn==19.9.0
