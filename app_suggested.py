@@ -86,16 +86,16 @@ class PrivateIGScrapper(object):
                 actions = ActionChains(self.browser)
                 actions.click(elem).perform()
                 # Metemos usuario y contraseña y clicamos
-                time.sleep(2)
+                time.sleep(1)
                 user_name_elem = self.browser.find_element_by_xpath("//input[@name='username']")
                 user_name_elem.clear()
                 user_name_elem.send_keys(self.login_user)
                 password_elem = self.browser.find_element_by_xpath("//input[@name='password']")
                 password_elem.clear()
                 password_elem.send_keys(self.login_pass)
-                time.sleep(2)
+                time.sleep(1)
                 login_button = self.browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/article/div/div[1]/div/form/div[4]').click()
-                time.sleep(2)
+                time.sleep(1)
 
                 # Volvemos a hacer un browser.get(url)
                 wait = WebDriverWait(self.browser, 10)
@@ -124,27 +124,27 @@ class PrivateIGScrapper(object):
                 
                 carousel_button = self.browser.find_element(By.XPATH, locators[0])
                 carousel_button.click()
-                time.sleep(2)
+                time.sleep(1)
                 soup = BeautifulSoup(self.browser.page_source, 'html.parser')
-                time.sleep(2)
+                time.sleep(1)
                 for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
                     images_urls.append(img.get('src'))
                 for _id in soup.find_all("a", attrs={"class": "FPmhX notranslate Qj3-a"}):
                     usernames.append(_id.get('title'))
-                time.sleep(2)
+                time.sleep(1)
 
                 while self.isElementPresent(locators[1]):
                     carousel_button = self.browser.find_element(By.XPATH, locators[1])
                     carousel_button.click()
-                    time.sleep(2)
+                    time.sleep(1)
                     soup = BeautifulSoup(self.browser.page_source, 'html.parser')
-                    time.sleep(2) 
+                    time.sleep(1) 
                     for _id in soup.find_all("a", attrs={"class": "FPmhX notranslate Qj3-a"}):
                         usernames.append(_id.get('title'))
-                    time.sleep(2)
+                    time.sleep(1)
                     for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
                         images_urls.append(img.get('src'))
-                    time.sleep(2)
+                    time.sleep(1)
 
                 images_urls = list(dict.fromkeys(images_urls))
                 suggested = list(dict.fromkeys(usernames))
