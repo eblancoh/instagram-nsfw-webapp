@@ -8,7 +8,7 @@ Para descragar este repositorio, simplemente ejecutar en consola:
 ```bash
 $ git clone https://github.com/eblancoh/instagram-nsfw-webapp.git
 ```
-<iframe width="560" height="315" src="https://youtu.be/0t4nr5qsVPk" frameborder="0" allowfullscreen></iframe>
+[Ejemplo de uso](https://youtu.be/0t4nr5qsVPk)
 
 Resumen de uso
 ------------
