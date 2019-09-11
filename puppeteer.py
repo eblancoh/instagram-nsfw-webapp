@@ -45,13 +45,16 @@ class PrivateIGScrapper(object):
             # para que no nos detecten.
             # Ver https://duo.com/decipher/driving-headless-chrome-with-python
             chrome_options = ChromeOptions()
-            chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-            chrome_options.add_argument('--disable-gpu')
-            chrome_options.add_argument('--disable-dev-shm-usage')
-            chrome_options.add_argument('--no-sandbox')
             chrome_options.add_argument("--headless")
-            self.browser = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), 
-            chrome_options=chrome_options)
+            # Uncomment for Heroku deployment.
+            # chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+            # chrome_options.add_argument('--disable-gpu')
+            # chrome_options.add_argument('--disable-dev-shm-usage')
+            # chrome_options.add_argument('--no-sandbox')
+            # self.browser = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), 
+            # chrome_options=chrome_options)
+            # Commment for Heroku deploy
+            self.browser = webdriver.Chrome(chrome_options=chrome_options)
         elif self.driver == 'geckodriver':
             # https://www.edureka.co/community/10026/headless-gecko-driver-using-selenium
             firefox_options = FirefoxOptions()

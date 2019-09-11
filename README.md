@@ -8,6 +8,7 @@ Para descragar este repositorio, simplemente ejecutar en consola:
 ```bash
 $ git clone https://github.com/eblancoh/instagram-nsfw-webapp.git
 ```
+<iframe width="560" height="315" src="https://youtu.be/0t4nr5qsVPk" frameborder="0" allowfullscreen></iframe>
 
 Resumen de uso
 ------------
@@ -82,14 +83,43 @@ web: gunicorn app:app
 Aquí Heroku usa la web para iniciar un servidor web para la aplicación; `app:app` indica que el módulo y el nombre de la aplicación en nuestro caso.
 Recomendamos hacer un fork del presente repo para posteriormente crear una app en Heroku.
 
-#### Creando y desplegando una app en Heroku desde GitHub
-
+#### Creando una app en Heroku
 Antes de crear una aplicación, hay que asegurarse de que su cuenta de GitHub esté conectada con la cuenta de Heroku
 
 <div style="text-align:center">
 <img src="img/heroku-app.PNG" width="400" />
 <p>Creando una app en Heroku</p>
 </div>
+
+#### Agregando algunos Builpacks y variables de entorno a Heroku:
+
+Hay que agregar los siguientes buildpacks en Heroku para que el scrapping sea satisfactorio:
+- Para instalar Chrome, ya que Chromedriver lo requiere: https://github.com/heroku/heroku-buildpack-google-chrome;
+- Chromedriver: https://github.com/heroku/heroku-buildpack-chromedriver.
+
+Hay que crear las variables de entorno:
+- `GOOGLE_CHROME_BIN`, con la ruta de chrome en heroku: `/app/.apt/usr/bin/google-chrome` 
+- `CHROMEDRIVER_PATH` con la ruta de chromedriver en heroku: `/app/.chromedriver/bin/chromedriver`.
+
+<div style="text-align:center">
+<img src="img/heroku-buildpack.PNG" width="400" />
+<p>Creando una app en Heroku</p>
+</div>
+
+
+En el archivo `puppeteer.py`, se debe configurar chromedriver:
+```python
+chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--no-sandbox')
+self.browser = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), 
+chrome_options=chrome_options)
+```
+
+#### Desplegando una app en Heroku desde GitHub
+
 Posteriomente seleccionamos el repositorio de GitHub y elegimos la rama a desplegar.
 
 <div style="text-align:center">
@@ -104,8 +134,6 @@ Tras desplegar, deberemos esperar un poco para poder hacer uso del servicio.
 Una vez dezplegada, simplemente debemos ir a la siguiente ruta para comenzar a usarla.
 https://instagram-nsfw-webapp.herokuapp.com/
 
-
-heroku buildpacks:set heroku/chromedriver --app instagram-nsfw-webapp
 
 Licencia
 -------

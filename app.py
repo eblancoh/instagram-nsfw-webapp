@@ -3,7 +3,7 @@ import os
 from os import urandom
 import requests
 from flask import Flask, redirect, render_template, request, url_for, jsonify, session
-from app_suggested import PrivateIGScrapper, nsfw_api_batch_post
+from puppeteer import PrivateIGScrapper, nsfw_api_batch_post
 
 # create the application object
 app = Flask(__name__)
