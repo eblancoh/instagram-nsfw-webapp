@@ -87,7 +87,7 @@ Recomendamos hacer un fork del presente repo para posteriormente crear una app e
 Antes de crear una aplicación, hay que asegurarse de que su cuenta de GitHub esté conectada con la cuenta de Heroku
 
 <div style="text-align:center">
-<img src="img/heroku-app.PNG" width="400" />
+<img src="img/heroku-app.png" width="400" />
 <p>Creando una app en Heroku</p>
 </div>
 
