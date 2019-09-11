@@ -46,12 +46,12 @@ class PrivateIGScrapper(object):
             # Ver https://duo.com/decipher/driving-headless-chrome-with-python
             chrome_options = ChromeOptions()
             chrome_options.add_argument("--headless")
-            self.browser = webdriver.Chrome(executable_path='/app/chromedriver/chromedriver.exe', chrome_options=chrome_options)
+            self.browser = webdriver.Chrome(chrome_options=chrome_options)
         elif self.driver == 'geckodriver':
             # https://www.edureka.co/community/10026/headless-gecko-driver-using-selenium
             firefox_options = FirefoxOptions()
             firefox_options.add_argument("--headless")
-            self.browser = webdriver.Firefox(executable_path='/app/geckodriver/geckodriver.exe', firefox_options=firefox_options)
+            self.browser = webdriver.Firefox(firefox_options=firefox_options)
         
         self.url = "https://www.instagram.com/" + str(self.username)
     
@@ -104,15 +104,14 @@ class PrivateIGScrapper(object):
 
                 profile_pic = soup.find("img", attrs={"class": "be6sR"}).get('src')
 
-                images_urls = list()
-                for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
-                    images_urls.append(img.get('src'))
-                
                 usernames = list()
                 for _id in soup.find_all("a", attrs={"class": "FPmhX notranslate Qj3-a"}):
                     usernames.append(_id.get('title'))
 
-
+                images_urls = list()
+                for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
+                    images_urls.append(img.get('src'))
+            
                 # Vamos a intentar activar todas las imágenes en el carousel de IG
                 locators = ['//*[@id="react-root"]/section/main/div/div/article/div[2]/div/div[2]/button',
                 '//*[@id="react-root"]/section/main/div/div/article/div[2]/div/div[2]/button[2]'
@@ -132,14 +131,15 @@ class PrivateIGScrapper(object):
                 while self.isElementPresent(locators[1]):
                     carousel_button = self.browser.find_element(By.XPATH, locators[1])
                     carousel_button.click()
-                    time.sleep(1)
+                    time.sleep(2)
                     soup = BeautifulSoup(self.browser.page_source, 'html.parser')
-                    time.sleep(1)
-                    for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
-                        images_urls.append(img.get('src'))
+                    time.sleep(2) 
                     for _id in soup.find_all("a", attrs={"class": "FPmhX notranslate Qj3-a"}):
                         usernames.append(_id.get('title'))
-                    time.sleep(1)
+                    time.sleep(2)
+                    for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
+                        images_urls.append(img.get('src'))
+                    time.sleep(2)
 
                 images_urls = list(dict.fromkeys(images_urls))
                 suggested = list(dict.fromkeys(usernames))
@@ -186,8 +186,9 @@ def nsfw_api_batch_post(input, suggested, username):
         with open(os.path.join(basedir, username, 'scores_suggestions.json'), 'w') as outfile:
             json_obj = json.loads(response.text)
 
-            for i in range(len(suggested)): 
-                json_obj['predictions'][i]['username']=suggested[i]
+            if len(json_obj['predictions']) == len(suggested):
+                for i in range(len(suggested)): 
+                    json_obj['predictions'][i]['username']=suggested[i]
                 
             json_obj['predictions'] = sorted(json_obj['predictions'], key=lambda x : x['score'], reverse=True)
             #json.dump(json.loads(response.text), outfile, indent=4, separators=[',', ':'], sort_keys=True, ensure_ascii=False)

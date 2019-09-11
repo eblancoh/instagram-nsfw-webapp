@@ -144,10 +144,12 @@ var data = {{preds | tojson}};
 
 $(function() {
     $.each(data.predictions, function(i, l) {
-        $('#main-content').append("<div class='col-lg-2'>" +
+      if (typeof l.username !== 'undefined') {
+    // variable is defined 
+    $('#main-content').append("<div class='col-lg-2'>" +
                          '<a href="' + l.url + '" >' +
-                        //  '<img src="' + l.url + '" class="img-circle" style="width:100%" >' +
-                         '<img src="' + l.url + '" class="img-circle" width:"140px" >' +
+                         '<img src="' + l.url + '" class="img-circle" style="width:100%" >' +
+                        //  '<img src="' + l.url + '" class="img-circle" width:"140px" >' +
                          '<div class="text-center"><a target="_blank" rel="noopener noreferrer" href="https://instagram.com/' + 
                          l.username + '/" >' + '<strong>' + l.username + '</strong>' + '</a></div>' +
                          '<div class="progress-outer">' +
@@ -162,8 +164,50 @@ $(function() {
                          '</div>' + 
                          '</div>'
                           )
-    });
-});
+    
+                        }
+                      else if (typeof l.username === 'undefined' || l.username === null){
+                        $('#main-content').append("<div class='col-lg-2'>" +
+                         '<a href="' + l.url + '" >' +
+                         '<img src="' + l.url + '" class="img-circle" style="width:100%" >' +
+                        //  '<img src="' + l.url + '" class="img-circle" width:"140px" >' +
+                         '<div class="progress-outer">' +
+                         '<div class="progress">' + 
+                         '<div class="progress-bar" role="progress-bar-stripped" aria-valuenow=' + 
+                         (l.score*100).toFixed(2) + 
+                         ' aria-valuemin="0" aria-valuemax="100" style="width:' +
+                         (l.score*100).toFixed(2) + '%;">' +
+                         '<div class="progress-value"><span>'+ (l.score*100).toFixed(2) +'</span>%</div>'+
+                         '</div>' +
+                         '</div>' +
+                         '</div>' + 
+                         '</div>'
+                          )
+                      }
+                      });
+                    });
+// $(function() {
+//     $.each(data.predictions, function(i, l) {
+//         $('#main-content').append("<div class='col-lg-2'>" +
+//                          '<a href="' + l.url + '" >' +
+//                         //  '<img src="' + l.url + '" class="img-circle" style="width:100%" >' +
+//                          '<img src="' + l.url + '" class="img-circle" width:"140px" >' +
+//                          '<div class="text-center"><a target="_blank" rel="noopener noreferrer" href="https://instagram.com/' + 
+//                          l.username + '/" >' + '<strong>' + l.username + '</strong>' + '</a></div>' +
+//                          '<div class="progress-outer">' +
+//                          '<div class="progress">' + 
+//                          '<div class="progress-bar" role="progress-bar-stripped" aria-valuenow=' + 
+//                          (l.score*100).toFixed(2) + 
+//                          ' aria-valuemin="0" aria-valuemax="100" style="width:' +
+//                          (l.score*100).toFixed(2) + '%;">' +
+//                          '<div class="progress-value"><span>'+ (l.score*100).toFixed(2) +'</span>%</div>'+
+//                          '</div>' +
+//                          '</div>' +
+//                          '</div>' + 
+//                          '</div>'
+//                           )
+//     });
+// });
 </script>
 
 <script>
