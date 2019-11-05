@@ -24,8 +24,8 @@ def login():
             scraper = PrivateIGScrapper(username=credentials['target'], 
                                         login_user=credentials['username'], 
                                         login_pass=credentials['password'], 
-                                        #driver='geckodriver')
-                                        driver='chromedriver')
+                                        driver='geckodriver')
+                                        #driver='chromedriver')
 
             images_urls, prof_pic, suggested = scraper.suggested_imgs_urls()
 

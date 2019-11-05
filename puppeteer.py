@@ -67,7 +67,7 @@ class PrivateIGScrapper(object):
         try:
             self.browser.find_element(By.XPATH, locator)
         except NoSuchElementException:
-            print ('No more scrolling buttons')
+            print ('No more scrolling buttons.')
             return False
         return True
 
@@ -99,27 +99,32 @@ class PrivateIGScrapper(object):
                 time.sleep(1)
                 login_button = self.browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/article/div/div[1]/div/form/div[4]').click()
                 time.sleep(1)
+                print('Login Successful[!]')
 
                 # Volvemos a hacer un browser.get(url)
                 wait = WebDriverWait(self.browser, 10)
                 wait.until(EC.visibility_of_element_located((By.XPATH, '/html/body/span/section/main/div/div/article/div[2]/div')))
-                #self.browser.find_all("img", attrs={"class": "_6q-tv"})
+                
                 self.browser.find_element_by_xpath('/html/body/span/section/main/div/div/article/div[2]/div')
                 
                 print('Scrapping suggested friends profile pics urls.')
+                
+                # Comenzamos
 
                 soup = BeautifulSoup(self.browser.page_source, 'html.parser')
 
                 profile_pic = soup.find("img", attrs={"class": "be6sR"}).get('src')
 
+                # Comenzamos a sacar pares usernames, images_urls
+                images_urls = list()
+                for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
+                    images_urls.append(img.get('src'))
+                
                 usernames = list()
                 for _id in soup.find_all("a", attrs={"class": "FPmhX notranslate Qj3-a"}):
                     usernames.append(_id.get('title'))
 
-                images_urls = list()
-                for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
-                    images_urls.append(img.get('src'))
-            
+                time.sleep(2)
                 # Vamos a intentar activar todas las imágenes en el carousel de IG
                 locators = ['//*[@id="react-root"]/section/main/div/div/article/div[2]/div/div[2]/button',
                 '//*[@id="react-root"]/section/main/div/div/article/div[2]/div/div[2]/button[2]'
@@ -127,19 +132,19 @@ class PrivateIGScrapper(object):
                 
                 carousel_button = self.browser.find_element(By.XPATH, locators[0])
                 carousel_button.click()
-                time.sleep(1)
+                time.sleep(3)
                 soup = BeautifulSoup(self.browser.page_source, 'html.parser')
                 time.sleep(1)
                 for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
                     images_urls.append(img.get('src'))
                 for _id in soup.find_all("a", attrs={"class": "FPmhX notranslate Qj3-a"}):
                     usernames.append(_id.get('title'))
-                time.sleep(1)
+                time.sleep(2)
 
                 while self.isElementPresent(locators[1]):
                     carousel_button = self.browser.find_element(By.XPATH, locators[1])
                     carousel_button.click()
-                    time.sleep(1)
+                    time.sleep(3)
                     soup = BeautifulSoup(self.browser.page_source, 'html.parser')
                     time.sleep(1) 
                     for _id in soup.find_all("a", attrs={"class": "FPmhX notranslate Qj3-a"}):
@@ -148,14 +153,15 @@ class PrivateIGScrapper(object):
                     for img in soup.find_all("img", attrs={"class": "_6q-tv"}):
                         images_urls.append(img.get('src'))
                     time.sleep(1)
-
+                # En el caso de que tengamos duplicados. Nos protegemos de ellos.
                 images_urls = list(dict.fromkeys(images_urls))
                 suggested = list(dict.fromkeys(usernames))
 
             except TimeoutException:
-                print("Timed out waiting for page to load")
+                print("Timed out waiting for page to load.")
 
         self.browser.close()
+        print(images_urls)
 
         return images_urls, profile_pic, suggested
 
@@ -164,6 +170,7 @@ def nsfw_api_batch_post(input, suggested, username):
     Llamada en batch al servicio https://github.com/eblancoh/nsfw_api
     montado en Heroku y obtención de las response con los scores
     """
+    print("Waiting for NSFW service allocated in Heroku response. ")
     basedir = os.path.dirname(os.path.abspath(__file__))
     
     url = "https://nsfw-api.herokuapp.com/batch-classify"

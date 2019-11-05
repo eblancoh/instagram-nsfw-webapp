@@ -2,9 +2,9 @@
 
 Este proyecto toma como bases las rutinas generadas bajo el proyecto [Instagram Scrapping: contribución **Departamento de Ideas Locas** Telefónica CDO](https://github.com/eblancoh/instagram-nsfw). Ver enlace para más detalles sobre esta primera PoC.
 
-Haciendo uso del motor dessrrollado en la Prueba de Concepto anteriormente desarrollada, se ha creado una **Aplicación Web** sencilla usando [**Python Flask**](https://palletsprojects.com/p/flask/) y [**Bootstrap 3**](https://getbootstrap.com/docs/3.3/).
+Haciendo uso del motor desarrollado en la Prueba de Concepto anteriormente desarrollada, se ha creado una **Aplicación Web** sencilla usando [**Python Flask**](https://palletsprojects.com/p/flask/) y [**Bootstrap 3**](https://getbootstrap.com/docs/3.3/).
 
-Para descragar este repositorio, simplemente ejecutar en consola:
+Para descargar este repositorio, simplemente ejecutar en consola:
 ```bash
 $ git clone https://github.com/eblancoh/instagram-nsfw-webapp.git
 ```
@@ -36,7 +36,7 @@ Tras ejecutar este comando se levantará un servidor al que se puede acceder a t
 ```bash
 http://localhost:5000/
 ```
-Esto nos dirige a la página que nos permitirá lanzar el proceso de scraping del perfil privado.
+Esto nos dirige a la página que nos permitirá lanzar el proceso de scrapping del perfil privado.
 
 ### Lanzando una consulta sobre perfil privado
 
