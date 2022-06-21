@@ -1,7 +1,7 @@
 beautifulsoup4==4.7.1
 requests==2.22.0
 configparser==3.7.4
-numpy==1.16.4
+numpy==1.22.0
 selenium==3.141.0
 Flask==1.1.1
 Flask-Bcrypt==0.7.1
