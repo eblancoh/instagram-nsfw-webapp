@@ -3,7 +3,7 @@ requests==2.22.0
 configparser==3.7.4
 numpy==1.16.4
 selenium==3.141.0
-Flask==1.1.1
+Flask==2.3.2
 Flask-Bcrypt==0.7.1
 Flask-HTTPAuth==3.2.4
 Flask-JWT-Extended==3.13.1
